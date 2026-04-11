@@ -112,3 +112,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ignore nested repo folder (local-only)
+aws-calculadora/

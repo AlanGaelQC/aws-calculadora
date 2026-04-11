@@ -76,21 +76,22 @@ def registrar():
             cursor.close()
             conn.close()
 
-    notif_status = ""
     try:
         requests.post(
             NOTIF_URL,
             json={"numero1": n1, "numero2": n2, "operacion": operacion, "resultado": resultado},
             timeout=8
         )
-        notif_status = "Notificacion enviada al Servicio B."
     except requests.exceptions.RequestException:
-        notif_status = "Servicio B en mantenimiento. Operacion guardada."
+        return jsonify({
+            "mensaje": "Servicio de notificaciones en mantenimiento. Tu registro fue guardado",
+            "resultado": resultado
+        }), 201
 
     return jsonify({
         "mensaje": "Operacion registrada exitosamente.",
         "resultado": resultado,
-        "notificacion": notif_status
+        "notificacion": "Notificacion enviada al Servicio B."
     }), 201
 
 if __name__ == '__main__':
