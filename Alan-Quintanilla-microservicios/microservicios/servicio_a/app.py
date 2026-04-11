@@ -12,11 +12,11 @@ db_config = {
     'database': os.environ.get('DB_NAME'),
 }
 
-NOTIF_URL = os.environ.get('NOTIF_URL', 'http://servicio_b:5001/notificar')
+NOTIF_URL = "http://calculadora-servicio-b:5001/notificar"
 
 HTML_FORM = """
 <!DOCTYPE html><html><body>
-<h2>Calculadora — Registrar Operacion</h2>
+<h2>Calculadora - Registrar Operacion</h2>
 <form method="POST" action="/registrar">
     Numero 1: <input name="numero1"><br><br>
     Numero 2: <input name="numero2"><br><br>
@@ -80,7 +80,7 @@ def registrar():
         requests.post(
             NOTIF_URL,
             json={"numero1": n1, "numero2": n2, "operacion": operacion, "resultado": resultado},
-            timeout=8
+            timeout=2
         )
     except requests.exceptions.RequestException:
         return jsonify({
