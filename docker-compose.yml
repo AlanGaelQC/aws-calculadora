@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: calculadora-web
+    ports:
+      - "80:80"
+    environment:
+      - DB_HOST=db-actividades.cfsiu7tgzbib.us-east-1.rds.amazonaws.com
+      - DB_PORT=3306
+      - DB_USER=admin
+      - DB_PASSWORD=12345678
+      - DB_NAME=db-actividades
+    restart: always
