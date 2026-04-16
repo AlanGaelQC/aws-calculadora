@@ -1,8 +1,8 @@
 -- Sistema de Seguimiento de Hábitos
 -- Equipo: Alan Gael Quintanilla Clemente
 
-CREATE DATABASE IF NOT EXISTS db-actividades;
-USE db-actividades;
+CREATE DATABASE IF NOT EXISTS `db-actividades`;
+USE `db-actividades`;
 
 CREATE TABLE IF NOT EXISTS habitos (
     id INT AUTO_INCREMENT PRIMARY KEY,
