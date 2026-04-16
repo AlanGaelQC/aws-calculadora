@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  habitos-servicio-a:
+    build: ./servicio_a
+    container_name: habitos-servicio-a
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    networks:
+      - red_interna
+    depends_on:
+      - habitos-servicio-b
+
+  habitos-servicio-b:
+    build: ./servicio_b
+    container_name: habitos-servicio-b
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    networks:
+      - red_interna
+
+networks:
+  red_interna:
+    driver: bridge
